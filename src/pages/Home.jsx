@@ -77,6 +77,9 @@ function Home() {
   const EditIcon = getIcon('Edit2');
   const FileTextIcon = getIcon('FileText');
   const Star = getIcon('Star');
+  const HashtagIcon = getIcon('Hash');
+  const LinkIcon = getIcon('Link');
+  const BookOpenIcon = getIcon('BookOpen');
   
   // Handle swipe to next article
   const handleSwipeUp = () => {
@@ -214,60 +217,90 @@ function Home() {
                 />
               </div>
               
-              {/* Left sidebar */}
-              <div className="absolute left-4 sm:left-8 md:left-12 bottom-1/3 z-10 flex flex-col items-center space-y-4">
-                {/* Topic hashtags */}
-                <div className="flex flex-col space-y-2">
+              {/* Left sidebar - IMPROVED VISIBILITY */}
+              <div className="absolute left-4 sm:left-8 md:left-12 bottom-1/3 z-10 flex flex-col items-start space-y-6">
+                {/* Topic hashtags with improved visibility */}
+                <motion.div 
+                  className="flex flex-col space-y-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="flex items-center mb-1">
+                    <HashtagIcon className="w-5 h-5 text-white mr-2" />
+                    <span className="text-white text-shadow font-medium">Topics</span>
+                  </div>
                   {articles[currentArticleIndex].categories.map((category, idx) => (
                     <motion.button
                       key={idx}
-                      className="bg-white/10 backdrop-blur-md hover:bg-white/20 px-3 py-1.5 rounded-full text-white text-shadow text-xs font-medium transition-all"
-                      whileHover={{ scale: 1.05 }}
+                      className="bg-white/20 backdrop-blur-md hover:bg-white/30 px-4 py-2 rounded-full text-white text-shadow text-sm font-medium flex items-center shadow-lg border border-white/10 transition-all"
+                      whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.3)" }}
                       onClick={(e) => handleFollow(e, category)}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.1 * idx }}
                     >
-                      #{category}
+                      <HashtagIcon className="w-4 h-4 mr-2" />
+                      {category}
                     </motion.button>
                   ))}
-                </div>
+                </motion.div>
                 
-                {/* Related articles */}
-                <div className="flex flex-col items-center space-y-2">
-                  <span className="text-white text-shadow text-xs font-medium">Related</span>
-                  <div className="flex flex-col space-y-1">
+                {/* Related articles with improved visibility */}
+                <motion.div 
+                  className="flex flex-col items-start space-y-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <div className="flex items-center mb-1">
+                    <LinkIcon className="w-5 h-5 text-white mr-2" />
+                    <span className="text-white text-shadow font-medium">Related</span>
+                  </div>
+                  <div className="flex flex-col space-y-2">
                     {[1, 2, 3].map((i) => (
                       <motion.div 
                         key={i}
-                        className="w-10 h-10 rounded-full bg-surface-200 border-2 border-white overflow-hidden"
-                        whileHover={{ scale: 1.1 }}
+                        className="flex items-center gap-2 bg-white/20 backdrop-blur-md rounded-full pl-1 pr-3 py-1 shadow-lg border border-white/10"
+                        whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.3)" }}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 * i }}
                       >
-                        <img 
-                          src={`https://images.unsplash.com/photo-152962288675${i}-cd18526cda${i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80`}
-                          alt="Related article"
-                          className="w-full h-full object-cover"
-                        />
+                        <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden shadow-md">
+                          <img 
+                            src={`https://images.unsplash.com/photo-152962288675${i}-cd18526cda${i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80`}
+                            alt="Related article"
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <span className="text-white text-shadow text-xs">Related Article {i}</span>
                       </motion.div>
                     ))}
                   </div>
-                </div>
+                </motion.div>
                 
-                {/* Sources used */}
-                <div className="text-white text-shadow text-xs font-medium text-center">
-                  <div className="mb-1">Sources</div>
+                {/* Sources used with improved visibility */}
+                <motion.div 
+                  className="flex flex-col items-start space-y-2"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.6 }}
+                >
+                  <div className="flex items-center mb-1">
+                    <BookOpenIcon className="w-5 h-5 text-white mr-2" />
+                    <span className="text-white text-shadow font-medium">Sources</span>
+                  </div>
                   <motion.div 
-                    className="bg-white/10 backdrop-blur-md px-2 py-1 rounded-md"
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
+                    className="bg-white/20 backdrop-blur-md px-4 py-2 rounded-lg flex items-center shadow-lg border border-white/10"
+                    whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.3)" }}
                   >
-                    {articles[currentArticleIndex].citations} citations
+                    <FileTextIcon className="w-4 h-4 mr-2 text-white" />
+                    <span className="text-white text-shadow font-medium">
+                      {articles[currentArticleIndex].citations} citations
+                    </span>
                   </motion.div>
-                </div>
+                </motion.div>
               </div>
               
               {/* Right sidebar icons */}
@@ -280,7 +313,7 @@ function Home() {
                   transition={{ delay: 0.1 }}
                   onClick={(e) => handleFollow(e, articles[currentArticleIndex].categories[0])}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-lg border border-white/10">
                     <HeartIcon className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-white text-shadow text-xs mt-1">Follow</span>
@@ -294,7 +327,7 @@ function Home() {
                   transition={{ delay: 0.2 }}
                   onClick={(e) => handleBookmark(e, articles[currentArticleIndex])}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-lg border border-white/10">
                     <BookmarkIcon className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-white text-shadow text-xs mt-1">Save</span>
@@ -314,7 +347,7 @@ function Home() {
                     });
                   }}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-lg border border-white/10">
                     <ShareIcon className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-white text-shadow text-xs mt-1">Share</span>
@@ -334,7 +367,7 @@ function Home() {
                     });
                   }}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-lg border border-white/10">
                     <EditIcon className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-white text-shadow text-xs mt-1">Edit</span>
@@ -354,7 +387,7 @@ function Home() {
                     });
                   }}
                 >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all">
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 transition-all shadow-lg border border-white/10">
                     <FileTextIcon className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-white text-shadow text-xs mt-1">Refs</span>
