@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import getIcon from '../utils/iconUtils';
-import MainFeature from '../components/MainFeature';
+import MainFeature, { TypeWriter } from '../components/MainFeature';
 
 // Mock data for articles
 const mockArticles = [
@@ -361,24 +361,27 @@ function Home() {
                 </motion.button>
               </div>
               
-              {/* Article content */}
-              <div className="absolute left-0 right-0 bottom-0 z-10 p-6 sm:p-8 md:p-12">
+              {/* Article content - CENTERED IN MIDDLE OF SCREEN */}
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 z-10 p-6 sm:p-8 md:p-12">
                 <motion.div
-                  className="max-w-3xl"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  className="max-w-3xl mx-auto"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                 >
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-shadow mb-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-shadow mb-4 text-center">
                     {articles[currentArticleIndex].title}
                   </h2>
                   
-                  <p className="text-base sm:text-lg text-white text-shadow mb-6">
-                    {articles[currentArticleIndex].excerpt}
-                  </p>
+                  <div className="text-base sm:text-lg text-white text-shadow mb-6 text-center overflow-hidden">
+                    <TypeWriter 
+                      text={articles[currentArticleIndex].excerpt}
+                      delay={30}
+                      className="inline-block max-w-xl mx-auto"
+                    />
+                  </div>
                   
                   {/* Status bar */}
-                  <div className="flex items-center justify-between text-white text-shadow text-sm">
+                  <div className="flex items-center justify-center text-white text-shadow text-sm mt-8">
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center">
                         <span className="mr-1">{articles[currentArticleIndex].viewCount.toLocaleString()}</span>
@@ -394,19 +397,19 @@ function Home() {
                         <span className="mr-1">{articles[currentArticleIndex].editCount}</span>
                         <span>edits</span>
                       </div>
-                    </div>
-                    
-                    <div className="flex items-center">
-                      {[...Array(5)].map((_, i) => (
-                        <Star 
-                          key={i}
-                          className={`w-4 h-4 ${
-                            i < Math.floor(articles[currentArticleIndex].quality) 
-                              ? 'text-yellow-400 fill-yellow-400' 
-                              : 'text-surface-300'
-                          }`} 
-                        />
-                      ))}
+                      
+                      <div className="flex items-center ml-2">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i}
+                            className={`w-4 h-4 ${
+                              i < Math.floor(articles[currentArticleIndex].quality) 
+                                ? 'text-yellow-400 fill-yellow-400' 
+                                : 'text-surface-300'
+                            }`} 
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </motion.div>

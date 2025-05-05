@@ -94,6 +94,26 @@
   .neu-dark {
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3), -5px -5px 15px rgba(255, 255, 255, 0.05);
   }
+  
+  .typing-animation {
+    display: inline-block;
+    overflow: hidden;
+    border-right: 0.15em solid white;
+    white-space: nowrap;
+    margin: 0;
+    letter-spacing: 0.02em;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+  }
 }
 
 /* Import React Toastify CSS */
