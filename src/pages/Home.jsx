@@ -15,7 +15,7 @@ const mockArticles = [
     viewCount: 12432,
     editCount: 347,
     quality: 4.8,
-    thumbnailUrl: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
     citations: 45
   },
   {
@@ -27,7 +27,7 @@ const mockArticles = [
     viewCount: 8765,
     editCount: 206,
     quality: 4.5,
-    thumbnailUrl: 'https://images.unsplash.com/photo-1551244072-5d12893278ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
     citations: 32
   },
   {
@@ -39,7 +39,7 @@ const mockArticles = [
     viewCount: 10932,
     editCount: 289,
     quality: 4.9,
-    thumbnailUrl: 'https://images.unsplash.com/photo-1577083552782-4400ea37fa76?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1574182245530-967d9b3831af?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
     citations: 58
   }
 ];
@@ -247,7 +247,7 @@ function Home() {
                         transition={{ delay: 0.1 * i }}
                       >
                         <img 
-                          src={`https://source.unsplash.com/random/100x100?sig=${i}`} 
+                          src={`https://images.unsplash.com/photo-152962288675${i}-cd18526cda${i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80`}
                           alt="Related article"
                           className="w-full h-full object-cover"
                         />
