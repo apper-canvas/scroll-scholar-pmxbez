@@ -269,7 +269,7 @@ function Home() {
                       >
                         <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden shadow-md">
                           <img 
-                            src={`https://images.unsplash.com/photo-152962288675${i}-cd18526cda${i}?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80`}
+                            src={`https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80`}
                             alt="Related article"
                             className="w-full h-full object-cover"
                           />
